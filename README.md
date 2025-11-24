@@ -1,27 +1,44 @@
-# React + TypeScript + Vite
+# CorpComment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A public feedback tool for companies where users can post feedback, upvote items, and filter by company hashtags.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Public Feedback Board**: View feedback from various users.
+- **Hashtag System**: Automatically extracts company names from hashtags (e.g., `#Google`).
+- **Filtering**: Click on a company hashtag to filter feedback items.
+- **Upvoting**: Upvote feedback items to show agreement.
+- **Modern UI**: Clean and responsive design.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: UI library
+- **TypeScript**: Static typing
+- **Vite**: Build tool
+- **Zustand**: State management
+- **CSS**: Custom styling
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+1.  **Clone the repository**
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+    ```bash
+    git clone https://github.com/HariYenuganti/corpcomment.git
+    ```
+
+2.  **Install dependencies**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**
+
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production**
+    ```bash
+    npm run build
+    ```
