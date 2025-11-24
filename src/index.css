@@ -103,6 +103,63 @@ body {
   border-radius: 6px;
   overflow: hidden;
   animation: intro 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ... (skipping unchanged sections) ... */
+
+/* FEEDBACKS */
+.feedback-list {
+  flex: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #f7f8f9;
+
+  scrollbar-color: #979ca0 #dbdfe4; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
+}
+
+/* ... (skipping unchanged sections) ... */
+
+/* SORTING */
+.sorting {
+  display: flex;
+  align-items: center;
+  padding-left: 32px;
+  background-color: #f7f8f9;
+  height: 50px;
+  border-bottom: 1px solid #e4e7eb;
+}
+
+.sorting > small {
+  font-size: 12px;
+  color: #898d96;
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.sorting__button {
+  margin-right: 15px;
+  background-color: rgba(0, 0, 0, 0.04);
+  color: #585c64;
+  padding: 8px 18px;
+  border-radius: 500px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sorting__button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #121618;
+}
+
+.sorting__button--active {
+  background-color: #121618;
+  color: #fff;
+  cursor: default;
 }
 
 /* HEADER */
@@ -302,7 +359,7 @@ form button span::selection {
 
 /* FEEDBACKS */
 .feedback-list {
-  height: 573px;
+  flex: 1;
   overflow-y: scroll;
   overflow-x: hidden;
   /* background-color: #F3F6F8; */
@@ -672,4 +729,44 @@ h1 > span {
   .footer {
     padding: 0 15px;
   }
+}
+
+/* SORTING */
+.sorting {
+  display: flex;
+  align-items: center;
+  padding-left: 32px;
+  background-color: #f7f8f9;
+  height: 50px;
+  border-bottom: 1px solid #e4e7eb;
+}
+
+.sorting > small {
+  font-size: 12px;
+  color: #898d96;
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.sorting__button {
+  margin-right: 15px;
+  background-color: rgba(0, 0, 0, 0.04);
+  color: #585c64;
+  padding: 8px 18px;
+  border-radius: 500px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sorting__button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #121618;
+}
+
+.sorting__button--active {
+  background-color: #121618;
+  color: #fff;
+  cursor: default;
 }

@@ -11,14 +11,21 @@ export default function FeedBackList() {
   const selectedCompany = useFeedbackItemsStore(
     (state) => state.selectedCompany
   );
+  const sortBy = useFeedbackItemsStore((state) => state.sortBy);
 
-  const filteredFeedBackItems = useMemo(
-    () =>
-      selectedCompany
-        ? feedBackItems.filter((item) => item.company === selectedCompany)
-        : feedBackItems,
-    [feedBackItems, selectedCompany]
-  );
+  const filteredFeedBackItems = useMemo(() => {
+    const items = selectedCompany
+      ? feedBackItems.filter((item) => item.company === selectedCompany)
+      : feedBackItems;
+
+    return items.sort((a, b) => {
+      if (sortBy === 'upvotes') {
+        return b.upvoteCount - a.upvoteCount;
+      } else {
+        return a.daysAgo - b.daysAgo;
+      }
+    });
+  }, [feedBackItems, selectedCompany, sortBy]);
 
   return (
     <ol className="feedback-list">

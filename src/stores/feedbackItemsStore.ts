@@ -7,10 +7,12 @@ type FeedbackStore = {
   isLoading: boolean;
   errorMessage: string;
   selectedCompany: string;
+  sortBy: 'upvotes' | 'daysAgo';
   getCompanyList: () => string[];
   getFilteredFeedbackItems: () => TFeedbackItem[];
   addItemToList: (text: string) => Promise<void>;
   selectCompany: (company: string) => void;
+  setSortBy: (sortBy: 'upvotes' | 'daysAgo') => void;
   fetchFeedbackItems: () => Promise<void>;
   upvoteItem: (id: number) => Promise<void>;
 };
@@ -22,6 +24,7 @@ export const useFeedbackItemsStore = create<FeedbackStore>()(
       isLoading: false,
       errorMessage: '',
       selectedCompany: '',
+      sortBy: 'upvotes',
 
       getCompanyList: () => {
         return get()
@@ -31,11 +34,19 @@ export const useFeedbackItemsStore = create<FeedbackStore>()(
 
       getFilteredFeedbackItems: () => {
         const state = get();
-        return state.selectedCompany
+        const filteredItems = state.selectedCompany
           ? state.feedBackItems.filter(
               (item) => item.company === state.selectedCompany
             )
           : state.feedBackItems;
+
+        return filteredItems.sort((a, b) => {
+          if (state.sortBy === 'upvotes') {
+            return b.upvoteCount - a.upvoteCount;
+          } else {
+            return a.daysAgo - b.daysAgo;
+          }
+        });
       },
 
       addItemToList: async (text: string) => {
@@ -73,6 +84,10 @@ export const useFeedbackItemsStore = create<FeedbackStore>()(
 
       selectCompany: (company: string) => {
         set({ selectedCompany: company });
+      },
+
+      setSortBy: (sortBy: 'upvotes' | 'daysAgo') => {
+        set({ sortBy });
       },
 
       fetchFeedbackItems: async () => {
