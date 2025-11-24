@@ -1,6 +1,7 @@
 import { TriangleUpIcon } from '@radix-ui/react-icons';
 import { TFeedbackItem } from '../../lib/types';
 import { useState } from 'react';
+import { useFeedbackItemsStore } from '../../stores/feedbackItemsStore';
 
 type FeedBackItemProps = {
   feedbackItem: TFeedbackItem;
@@ -8,7 +9,7 @@ type FeedBackItemProps = {
 
 export default function FeedBackItem({ feedbackItem }: FeedBackItemProps) {
   const [open, setOpen] = useState(false);
-  const [upvoteCount, setUpvoteCount] = useState(feedbackItem.upvoteCount);
+  const upvoteItem = useFeedbackItemsStore((state) => state.upvoteItem);
 
   const handleClick = () => {
     setOpen(!open);
@@ -16,9 +17,8 @@ export default function FeedBackItem({ feedbackItem }: FeedBackItemProps) {
 
   const handleUpvote = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setUpvoteCount(upvoteCount + 1);
+    upvoteItem(feedbackItem.id);
     e.currentTarget.disabled = true;
-    e.stopPropagation();
   };
 
   return (
@@ -28,7 +28,7 @@ export default function FeedBackItem({ feedbackItem }: FeedBackItemProps) {
     >
       <button onClick={handleUpvote}>
         <TriangleUpIcon />
-        <span>{upvoteCount}</span>
+        <span>{feedbackItem.upvoteCount}</span>
       </button>
       <div>
         <p>{feedbackItem.badgeLetter}</p>
